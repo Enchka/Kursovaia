@@ -5,68 +5,117 @@ import ru.altmanea.edu.server.model.Lesson
 import ru.altmanea.edu.server.model.Teacher
 import ru.altmanea.edu.server.model.TimeTable
 
-//val lessonsRepo = ListRepo<Lesson>()
-//val timetableRepo = ListRepo<TimeTable>()
 val teacherRepo = ListRepo<Teacher>()
-//val dayRepo = ListRepo<Day>()
+
 public val mapLessons: MutableMap<String, String> = mutableMapOf()
-//вносим расписание по парам
-val mondayUp = listOf(
-    Lesson("лаб.", "21м", "информ.технологии", "1-322"), Lesson(), Lesson(), Lesson(), Lesson(),
-    )
-val mondayDown = listOf(
-    Lesson("лаб.", "21и", "информ.технологии", "1-322"), Lesson("кср.", "21и", "информ.технологи", "1-329"), Lesson("кср.", "21м", "информ.технологи", "1-326"), Lesson(), Lesson()
+
+val mondayUp1 = listOf(
+    Lesson(), Lesson("лаб", "29з", "тестиропвыыв.програм.пр.", "1-467"), Lesson(), Lesson(), Lesson(),
 )
-val tuesdayUp = listOf(
+val mondayDown1 = listOf(
     Lesson(), Lesson(), Lesson(), Lesson(), Lesson(),
 )
-val tuesdayDown = listOf(
+val mondayUp2 = listOf(
+    Lesson("лек", "28и", "проефвкт.среды", "1-326"),Lesson(),  Lesson(), Lesson(), Lesson(),
+)
+val mondayDown2 = listOf(
     Lesson(), Lesson(), Lesson(), Lesson(), Lesson(),
 )
-val wednesdayUp = listOf(
-    Lesson(), Lesson("лаб.", "21у", "инфо.сист.и техн", "3-315"), Lesson(), Lesson(), Lesson(),
+val tuesdayUp1 = listOf(
+    Lesson("лаб", "29", "тестиров.праыВИграм.пр.", "1-467"), Lesson(), Lesson(), Lesson(), Lesson(),
 )
-val wednesdayDown = listOf(
-    Lesson(), Lesson("лаб.", "21з", "информ.теологии", "1-322"), Lesson("лаб.", "21м", "информ.технологии", "1-112"), Lesson("лаб.", "21м", "информ.технологии", "1-325"), Lesson(),
-)
-val thursdayUp = listOf(
-    Lesson(), Lesson("лаб.", "21и", "информ.теологии", "1-322"), Lesson(), Lesson(), Lesson(),
-)
-val thursdayDown = listOf(
+val tuesdayDown1 = listOf(
     Lesson(), Lesson(), Lesson(), Lesson(), Lesson(),
 )
-val fridayUp = listOf(
-    Lesson(), Lesson(), Lesson("лаб.", "21м", "информ.теологии", "1-467"), Lesson("лаб.", "21з", "информ.технологии", "1-467"), Lesson("лаб.", "21з", "информ.технологии", "1-325"),
-)
-val fridayDown = listOf(
-    Lesson(), Lesson(), Lesson("пр.кср.", "21з", "информ.технологи", "1-406"), Lesson("лаб.", "21з", "информ.технологии", "1-325"), Lesson(),
-)
-val saturdayUp = listOf(
+val tuesdayUp2 = listOf(
     Lesson(), Lesson(), Lesson(), Lesson(), Lesson(),
 )
-val saturdayDown = listOf(
+val tuesdayDown2 = listOf(
+    Lesson(), Lesson(), Lesson("лек", "28и", "прЫВИект.среды.авт.", "1-326"), Lesson("лаб", "28и", "проауаект.среды.авт.", "1-326"), Lesson(),
+)
+val wednesdayUp1 = listOf(
     Lesson(), Lesson(), Lesson(), Lesson(), Lesson(),
 )
-//указываем день недели для пар
-val MU = Day("Понедельник", mondayUp as MutableList<Lesson>)
-val MD = Day("Понедельник", mondayDown as MutableList<Lesson>)
-val TuU =Day("Вторник", tuesdayUp as MutableList<Lesson>)
-val TuD =Day("Вторник", tuesdayDown as MutableList<Lesson>)
-val WU =Day("Среда", wednesdayUp as MutableList<Lesson>)
-val WD =Day("Среда", wednesdayDown as MutableList<Lesson>)
-val ThU = Day("Четверг", thursdayUp as MutableList<Lesson>)
-val ThD = Day("Четверг", thursdayDown as MutableList<Lesson>)
-val FU = Day("Пятница", fridayUp as MutableList<Lesson>)
-val FD = Day("Пятница", fridayDown as MutableList<Lesson>)
-val SU = Day("Суббота", saturdayUp as MutableList<Lesson>)
-val SD = Day("Суббота", saturdayDown as MutableList<Lesson>)
-// Формируем четные и нечетные недели
-val UpWeek = listOf(MU,TuU,WU,ThU,FU, SU)
-val DownWeek = listOf(MD,TuD,WD,ThD,FD, SD)
-//Формируем расписание
-val Table = TimeTable(UpWeek as MutableList<Day>, DownWeek as MutableList<Day>)
-//Расписание преподавателей
+val wednesdayDown1 = listOf(
+    Lesson(), Lesson( ), Lesson("лаб", "29з", "тестмвафЫВивавкеиров.програм.пр.", "1-467"), Lesson(), Lesson(),
+)
+val wednesdayUp2 = listOf(
+    Lesson(), Lesson(), Lesson(), Lesson(), Lesson(),
+)
+val wednesdayDown2 = listOf(
+    Lesson(), Lesson( ), Lesson("лаб", "29з", "тестмваифыыфвавкеиров.програм.пр.", "1-467"), Lesson(), Lesson(),
+)
+val thursdayUp1 = listOf(
+    Lesson(), Lesson(), Lesson("кср", "29м", "текст.проФВМграм.пр.", "1-467"), Lesson(), Lesson(),
+)
+val thursdayDown1 = listOf(
+    Lesson(), Lesson(), Lesson(), Lesson(), Lesson(),
+)
+val thursdayUp2 = listOf(
+    Lesson(), Lesson(), Lesson("кср", "29м", "текст.проыфаграм.пр.", "1-467"), Lesson(), Lesson(),
+)
+val thursdayDown2 = listOf(
+    Lesson(), Lesson(), Lesson(), Lesson(), Lesson(),
+)
+val fridayUp1 = listOf(
+    Lesson("лаб.", "29м", "тестинг оф пыфарограммс", "1-467"), Lesson("лаб.", "29з", "тфыаестинг оф программс", "1-467"), Lesson("кср.", "29м", "тестинг оф прогрыфвпаммс", "1-467"), Lesson(), Lesson(),
+)
+val fridayDown1 = listOf(
+    Lesson(), Lesson(), Lesson(), Lesson(), Lesson(),
+)
+val fridayUp2 = listOf(
+    Lesson(), Lesson("лаб.", "28и", "проджеыфакт оф сред", "1-326"), Lesson(), Lesson(), Lesson(),
+)
+val fridayDown2 = listOf(
+    Lesson(), Lesson(), Lesson(), Lesson("лаб.", "28и", "прфыаоджект оф сред", "1-326"), Lesson("лаб.", "28и", "проджект оф сред", "1-326"),
+)
+val saturdayUp1 = listOf(
+    Lesson(), Lesson(), Lesson(), Lesson(), Lesson(),
+)
+val saturdayDown1 = listOf(
+    Lesson("лаб.", "29м", "тестинг оф фыапрограммс", "1-467"), Lesson(), Lesson(), Lesson(), Lesson(),
+)
+val saturdayUp2 = listOf(
+    Lesson(), Lesson(), Lesson(), Lesson(), Lesson(),
+)
+val saturdayDown2 = listOf(
+    Lesson(), Lesson(), Lesson(), Lesson(), Lesson(),
+)
+
+val MU1 = Day("Понедельник", mondayUp1 as MutableList<Lesson>)
+val MU2 = Day("Понедельник", mondayUp2 as MutableList<Lesson>)
+val MD1 = Day("Понедельник", mondayDown1 as MutableList<Lesson>)
+val MD2 = Day("Понедельник", mondayDown2 as MutableList<Lesson>)
+val TuU1 =Day("Вторник", tuesdayUp1 as MutableList<Lesson>)
+val TuU2 =Day("Вторник", tuesdayUp2 as MutableList<Lesson>)
+val TuD1 =Day("Вторник", tuesdayDown1 as MutableList<Lesson>)
+val TuD2 =Day("Вторник", tuesdayDown2 as MutableList<Lesson>)
+val WU1 =Day("Среда", wednesdayUp1 as MutableList<Lesson>)
+val WU2=Day("Среда", wednesdayUp2 as MutableList<Lesson>)
+val WD1 =Day("Среда", wednesdayDown1 as MutableList<Lesson>)
+val WD2 =Day("Среда", wednesdayDown2 as MutableList<Lesson>)
+val ThU1 = Day("Четверг", thursdayUp1 as MutableList<Lesson>)
+val ThU2 = Day("Четверг", thursdayUp2 as MutableList<Lesson>)
+val ThD1 = Day("Четверг", thursdayDown1 as MutableList<Lesson>)
+val ThD2 = Day("Четверг", thursdayDown2 as MutableList<Lesson>)
+val FU1 = Day("Пятница", fridayUp1 as MutableList<Lesson>)
+val FU2 = Day("Пятница", fridayUp2 as MutableList<Lesson>)
+val FD1 = Day("Пятница", fridayDown1 as MutableList<Lesson>)
+val FD2 = Day("Пятница", fridayDown2 as MutableList<Lesson>)
+val SU1 = Day("Суббота", saturdayUp1 as MutableList<Lesson>)
+val SU2 = Day("Суббота", saturdayUp2 as MutableList<Lesson>)
+val SD1 = Day("Суббота", saturdayDown1 as MutableList<Lesson>)
+val SD2 = Day("Суббота", saturdayDown2 as MutableList<Lesson>)
+
+val UpWeek1 = listOf(MU1,TuU1,WU1,ThU1,FU1,SU1)
+val DownWeek1 = listOf(MD1,TuD1,WD1,ThD1,FD1,SD1)
+val UpWeek2 = listOf(MU2,TuU2,WU2,ThU2,FU2,SU2)
+val DownWeek2 = listOf(MD2,TuD2,WD2,ThD2,FD2,SD2)
+
+val Table1 = TimeTable(UpWeek1 as MutableList<Day>, DownWeek1 as MutableList<Day>)
+val Table2 = TimeTable(UpWeek2 as MutableList<Day>, DownWeek2 as MutableList<Day>)
+
 val teacherRepoTestData = listOf(
-    Teacher("Профессор кафедры АиСУ Денисова Л.А.", Table),
-    Teacher("Преподаватель кафедры АиСУ Головин Д.В.", Table)
+    Teacher("преп.ГоловинД.В.", Table1),
+    Teacher("проф.ДенисоваЛ.А.", Table2)
 )

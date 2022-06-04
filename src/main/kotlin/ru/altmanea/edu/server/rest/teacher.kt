@@ -14,7 +14,7 @@ import ru.altmanea.edu.server.repo.teacherRepo
 
 fun Route.teacher() =
 route(teachersPath) {
-    //Получение списка всех преподов, но на сервере он всего один, мне было лень:)
+    //Получение списка всех преподователей
     get {
         if (!teacherRepo.isEmpty()) {
             call.respond(teacherRepo.findAll())
@@ -25,20 +25,20 @@ route(teachersPath) {
             )
         }
     }
-    //Нахождение преподавателя (на его странице мы выводим имя через это
+
     get("{id}"){
         val id = call.parameters["id"] ?: return@get call.respondText(
-            "Missing or malaformed id",
+            "Missing or malformed id",
             status = HttpStatusCode.BadRequest
         )
         val teacherItem =
             teacherRepo[id] ?: return@get call.respondText(
-                "No student with id $id",
+                "No teacher with id $id",
                 status = HttpStatusCode.NotFound
             ) //находим преподавателя по id
         call.respond(listOf(teacherItem.elem.teacherName))
     }
-        // Получение списка ошибок через MutableList (Потому что там ключ(ошибка на сервере) может повторятся только раз)
+        // Получение списка ошибок через MutableList
     get("{id}/lesson"){
         val id = call.parameters["id"] ?: return@get call.respondText(
             "Missing or malformed id",
@@ -46,9 +46,9 @@ route(teachersPath) {
         )
         val teacherItem =
             teacherRepo[id] ?: return@get call.respondText(
-                "No student with id $id",
+                "No teacher with id $id",
                 status = HttpStatusCode.NotFound
-            ) //находим преподавателя по id
+            )
         val teacherRepoDumpTestData = ReturnsArrayOfTeachers(tables as XSSFSheet)
             val teacherItemDump =
                 teacherRepoDumpTestData.find { it.teacherName == teacherItem.elem.teacherName } //находим преподавателя в выгрузке Excel с таким же именем
@@ -80,23 +80,23 @@ route(teachersPath) {
         }else {mapLessons += ("Test" to "data")}
         call.respond(mapLessons)
     }
-    //Исправление ошибки (та самая кнопочка) берем ключ, находим его во всем репозитории и меняем на его значение (т.е. Карты реазизуются ключ -> значение, не понятно? почитай :))
+    //Исправление ошибки берем ключ, находим его во всем репозитории и меняем на его значение
     put("{id}/lesson/{name}"){
         val id = call.parameters["id"] ?: return@put call.respondText(
             "Missing or malformed id",
             status = HttpStatusCode.BadRequest
         )
         val name = call.parameters["name"] ?: return@put call.respondText(
-            "Missing or malformed id",
+            "Missing or malformed name",
             status = HttpStatusCode.BadRequest
         )
         val teacherItem =
             teacherRepo[id] ?: return@put call.respondText(
-                "No student with id $id",
+                "No teacher with id $id",
                 status = HttpStatusCode.NotFound
             )
-        val changeName = mapLessons.getValue("$name")
-        mapLessons.remove("$name")
+        val changeName = mapLessons.getValue(name)
+        mapLessons.remove(name)
         val table = teacherItem.elem.table
         var i = 0
         var n: Int

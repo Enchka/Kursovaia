@@ -26,7 +26,6 @@ import wrappers.axios
 import wrappers.fetchText
 import kotlin.js.json
 
-
 external interface TeacherProps : Props {
     var map: MutableMap<String, String>
     var teacherName: String
@@ -35,7 +34,7 @@ external interface TeacherProps : Props {
 }
 
 fun fcTeacher() = fc("Teacher") { props: TeacherProps ->
-    h3 { + "${props.teacherName}" }
+    h3 { +props.teacherName }
     for (item in props.map) {
         p {
             +item.toString()
@@ -45,7 +44,6 @@ fun fcTeacher() = fc("Teacher") { props: TeacherProps ->
             props.sendErrorKey(item.key)
         }}
     }
-    //ol { "${props.lessons}" }
 }
 
 fun fcContainerTeacher() = fc("QueryTeacherList") { _: Props ->
@@ -91,13 +89,13 @@ fun fcContainerTeacher() = fc("QueryTeacherList") { _: Props ->
     )
 
 
-    if (query.isLoading or query1.isLoading ) {  //or
+    if (query.isLoading or query1.isLoading ) {
         div { +"Loading .." }
     } else if (query.isError or query1.isError) {
         div { +"Error!" }
     } else {
         val map: MutableMap<String,String> = Json.decodeFromString(query.data ?: "") //для карты с ошибками
-        val teacher: List<String> = Json.decodeFromString(query1.data ?: "") //кнопка исправления ошибок
+        val teacher: List<String> = Json.decodeFromString(query1.data ?: "")         //кнопка исправления ошибок
         child(fcTeacher()) {
             attrs.map = map
             attrs.teacherName = teacher[0]
@@ -106,7 +104,6 @@ fun fcContainerTeacher() = fc("QueryTeacherList") { _: Props ->
             }
         }
     }
-
 }
 
 

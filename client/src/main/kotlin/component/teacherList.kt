@@ -1,6 +1,5 @@
 package component
 
-
 import kotlinext.js.jso
 import react.Props
 import react.dom.div
@@ -37,9 +36,9 @@ fun fcTeacherList() = fc("TeacherList"){ props: TeacherListProps ->
             }
         }
     }
+    h3{"getDB"}
 }
 fun fcContainerTeacherList() = fc("QueryTeacherList") { _: Props ->
-
     val query = useQuery<Any, QueryError, AxiosResponse<Array<Item<Teacher>>>, Any>(
         "teachersList",
         {
@@ -48,7 +47,6 @@ fun fcContainerTeacherList() = fc("QueryTeacherList") { _: Props ->
             })
         }
     )
-
     if (query.isLoading) div { +"Loading .." }
     else if (query.isError) div { +"Error!" }
     else {

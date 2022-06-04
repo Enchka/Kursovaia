@@ -3,7 +3,6 @@ import component.fcContainerTeacherList
 import component.fcContainerUpload
 import kotlinx.browser.document
 import react.createElement
-import react.dom.h1
 import react.dom.render
 import react.query.QueryClient
 import react.query.QueryClientProvider
@@ -16,34 +15,39 @@ import wrappers.cReactQueryDevtools
 val queryClient = QueryClient()
 
 fun main() {
-    render(document.getElementById("root")!!){
-        HashRouter { QueryClientProvider{
-            attrs.client = queryClient
-            Link{ attrs.to = "/"
-                +"Teachers"
-            }
-            + "    "
-            Link{
-                attrs.to = "/upload"
-                +"Upload"
-            }
-            Routes {
-                Route { attrs.index = true
-                    attrs.element =
-                        createElement(fcContainerTeacherList())
+    render(document.getElementById("root")!!) {
+        HashRouter {
+            QueryClientProvider {
+                attrs.client = queryClient
+                Link {
+                    attrs.to = "/"
+                    +"Teachers"
                 }
-                Route {attrs.path = "/teacher/:id"
-                    attrs.element =
-                        createElement(fcContainerTeacher())
+                +"    "
+                Link {
+                    attrs.to = "/upload"
+                    +"Upload"
                 }
-                Route {
-                    attrs.path = "/upload"
-                    attrs.element =
-                        createElement(fcContainerUpload())
+                Routes {
+                    Route {
+                        attrs.index = true
+                        attrs.element =
+                            createElement(fcContainerTeacherList())
+                    }
+                    Route {
+                        attrs.path = "/teacher/:id"
+                        attrs.element =
+                            createElement(fcContainerTeacher())
+                    }
+                    Route {
+                        attrs.path = "/upload"
+                        attrs.element =
+                            createElement(fcContainerUpload())
+                    }
                 }
+                child(cReactQueryDevtools()) {}
             }
-            child(cReactQueryDevtools()){}
-        }}
+        }
     }
 }
 

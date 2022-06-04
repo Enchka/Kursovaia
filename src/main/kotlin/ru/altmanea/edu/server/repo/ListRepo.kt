@@ -39,5 +39,4 @@ class ListRepo<E> : Repo<E> {
 
     override fun isEmpty(): Boolean =
         list.isEmpty()
-
 }

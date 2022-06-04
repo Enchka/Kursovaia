@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 
 data class Teacher (
     var teacherName: String,
-    var table: TimeTable //расписание
+    var table: TimeTable
         )
